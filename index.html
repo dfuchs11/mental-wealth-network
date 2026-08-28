@@ -331,6 +331,9 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
 .footmark{width:70px;border-radius:50%;opacity:.45;margin-bottom:18px}
 .fgrid{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:center}
 .fgrid p{margin:0;font-size:13px;color:rgba(244,239,230,.8)}
+.social-row{display:flex;gap:14px;align-items:center;width:100%;justify-content:center;margin-top:8px}
+.social-row a{display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,filter .2s}
+.social-row a:hover{transform:scale(1.15);filter:brightness(1.3)}
 
 /* ── reveal ── */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
@@ -359,11 +362,11 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
   <div class="drawer-panel">
     <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
     <nav>
-      <a href="#floor"><small>01</small>What is Mental Wealth?</a>
-      <a href="#room"><small>02</small>Who We Are</a>
-      <a href="#believe"><small>03</small>Our Mission</a>
-      <a href="#format"><small>04</small>Common Questions</a>
-      <a href="#join"><small>05</small>Connect</a>
+      <a href="#floor">What is Mental Wealth?</a>
+      <a href="#room">Who We Are</a>
+      <a href="#believe">Our Mission</a>
+      <a href="#format">Common Questions</a>
+      <a href="#join">Connect</a>
     </nav>
   </div>
 </div>
@@ -525,6 +528,16 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
   <div class="wrap fgrid">
     <p>Mental Wealth Network LLC. Two Takes. One Goal.</p>
     <p style="width:100%;max-width:66ch">Mental Wealth Network publishes educational content. It is not therapy, diagnosis, or treatment, and it is not a substitute for care from a licensed professional. If you are in crisis, call or text 988 in the US to reach the Suicide &amp; Crisis Lifeline.</p>
+    <div class="social-row">
+      <!-- TODO: Replace placeholder href with real Instagram URL -->
+      <a href="#instagram-placeholder" target="_blank" rel="noopener" aria-label="Instagram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#E1306C" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="#E1306C" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#E1306C"/></svg></a>
+      <!-- TODO: Replace placeholder href with real TikTok URL -->
+      <a href="#tiktok-placeholder" target="_blank" rel="noopener" aria-label="TikTok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12a4 4 0 1 0 4 4V4c1 2.5 3.5 4 6 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <!-- TODO: Replace placeholder href with real LinkedIn URL -->
+      <a href="#linkedin-placeholder" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="#0A66C2" stroke-width="2"/><path d="M8 11v5M8 8v.01M12 16v-5c0-1.5 1-2 2-2s2 .5 2 2v5" stroke="#0A66C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <!-- TODO: Replace placeholder href with real YouTube URL -->
+      <a href="#youtube-placeholder" target="_blank" rel="noopener" aria-label="YouTube"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="4" stroke="#FF0000" stroke-width="2"/><path d="M10 9l5 3-5 3V9z" fill="#FF0000"/></svg></a>
+    </div>
   </div>
 </footer>
 
