@@ -605,6 +605,9 @@ function show(i){
   $('q').textContent='"'+d.q+'"';
   $('pNick').textContent=d.n; $('pTom').textContent=d.t;
   [$('tNick'),$('tTom')].forEach(e=>{e.classList.remove('anim');void e.offsetWidth;e.classList.add('anim')});
+  if(window.innerWidth<=700){
+    setTimeout(()=>$('q').scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }
 }
 show(0);
 
