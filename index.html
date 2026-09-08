@@ -606,7 +606,11 @@ function show(i){
   $('pNick').textContent=d.n; $('pTom').textContent=d.t;
   [$('tNick'),$('tTom')].forEach(e=>{e.classList.remove('anim');void e.offsetWidth;e.classList.add('anim')});
   if(window.innerWidth<=700){
-    setTimeout(()=>$('q').scrollIntoView({behavior:'smooth',block:'start'}),120);
+    setTimeout(()=>{
+      const el=$('q');
+      const top=el.getBoundingClientRect().top+window.scrollY-90;
+      window.scrollTo({top,behavior:'smooth'});
+    },120);
   }
 }
 show(0);
