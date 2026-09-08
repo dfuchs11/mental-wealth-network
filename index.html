@@ -84,6 +84,8 @@ section{padding:clamp(80px,6vw,96px) 0;position:relative;z-index:2}
 h2.sec{font-family:var(--disp);font-weight:800;font-size:clamp(26px,4.2vw,50px);line-height:1.16;
   letter-spacing:.005em;text-transform:uppercase;margin:0 0 22px;text-align:center}
 .lede{font-family:var(--body-serif);font-size:clamp(16px,1.9vw,19px);color:var(--mute);max-width:62ch;margin:0 auto 8px;line-height:1.7}
+.built-lede-line{white-space:nowrap}
+@media(max-width:700px){.built-lede-line{white-space:normal}}
 /* .answer-block: marks a block as the direct response to a question-style
    headline. Same left-border accent language as .creed, reused rather
    than invented fresh. Holds multiple paragraphs as one continuous answer
@@ -428,7 +430,7 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
 <section id="built">
   <div class="wrap">
     <h2 class="sec rv">Mental Wealth Isn't One Thing.</h2>
-    <p class="lede rv" style="max-width:760px">It's not a mood you snap out of. It's not luck you're born with. It looks different for every man.<br>Here's what it's built from:</p>
+    <p class="lede rv" style="max-width:760px"><span class="built-lede-line">It's not a mood you snap out of. It's not luck you're born with. It looks different for every man.</span><br>Here's what it's built from:</p>
     <div class="doms rv" id="doms">
       <div class="dom-wrap">
         <button class="dom-head" aria-expanded="false"><b>Mindset</b><span class="pm"></span></button>
