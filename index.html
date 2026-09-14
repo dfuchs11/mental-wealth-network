@@ -290,11 +290,18 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
 .who span{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
 .take.nick .who span{color:#A796C9}
 .take.tom .who span{color:#8FA6D4}
-.take p{font-family:var(--body-serif);margin:0;font-size:16px;line-height:1.7;color:var(--cream)}
+.take p,.take .take-body{font-family:var(--body-serif);margin:0;font-size:16px;line-height:1.7;color:var(--cream)}
 .take.anim{animation:rise .55s var(--ease) both}
 .take.tom.anim{animation-delay:.14s}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(max-width:820px){.takes{grid-template-columns:1fr}.take+.take{border-left:0;border-top:1px solid var(--faint)}}
+.t-rest{display:none}
+.take-ex .t-rest{display:inline}
+.t-try{font-family:var(--body-serif);font-size:14.5px;line-height:1.6;color:var(--mute);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--faint);display:none}
+.t-try b{color:var(--gold-lit);font-weight:700;font-style:normal}
+.take-ex .t-try{display:block}
+.t-toggle{background:none;border:none;padding:0;margin:12px 0 0;color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.04em;cursor:pointer;display:block;font-family:var(--body-serif);text-decoration:underline;text-underline-offset:3px}
+.t-toggle:hover{color:var(--cream)}
 
 /* ── founders ── */
 /* ── founders-mini: compact, no separate section break. Small square
@@ -582,29 +589,62 @@ document.querySelectorAll('.dom-head').forEach(d => {
 const DATA=[
  {q:"Why don't my friends and I ever talk about anything real?",v:"aligned",
   n:"Mine didn't either. So I went first. I told one guy something true on a car ride and it was the most uncomfortable four minutes of my year. He texted me his own thing two weeks later. Somebody has to go first, and it's probably going to be you.",
-  t:"Male friendship tends to be built shoulder-to-shoulder rather than face-to-face, organized around an activity instead of a conversation. That isn't a defect, it's a pattern. But the research on connection is consistent: depth follows disclosure, and disclosure is reciprocal. One man's honesty measurably raises the odds of another's."},
+  tPrev:"Because real conversations require vulnerability, and vulnerability feels risky. A lot of friendships are built around what happened at work, sports, the latest show, social media, or what we're doing this weekend.",
+  t:"None of that is bad. But if that's all you talk about, you can be surrounded by people and still feel alone. Here's the uncomfortable truth: somebody has to go first. You don't need to sit your friends down and announce, 'We're going to have a deep conversation.' Just ask a better question. 'How are you really doing?' 'What's been stressing you out lately?' Or tell them something real about yourself first. When you stop performing and start sharing, you give other people permission to do the same. Real connection doesn't come from having more conversations. It comes from having more honest ones.",
+  tTry:"The next time you're with a friend, put the phone away and ask one question you normally wouldn't ask. Then actually listen to the answer."},
  {q:"Why do I feel like garbage when everything looks fine on paper?",v:"aligned",
   n:"This one nearly took me out, because you're not allowed to complain about it. Everything's working. So you tell yourself you're just ungrateful, and now you've got the original problem plus a second one you invented.",
-  t:"There is a well-documented gap between external achievement and internal state. Achievement regulates other people's opinion of you. It does not regulate your nervous system. Men present this way constantly, high function and flat affect, and it's frequently the first thing I see before a depression diagnosis, not the thing that rules one out."},
+  tPrev:"Because your r\u00e9sum\u00e9 isn't your emotional life. You can have the job, the house, the relationship, the money, the nice car, and still feel empty.",
+  t:"That's because external success and internal fulfillment are two completely different things. Sometimes we spend so much energy building a life that looks successful that we forget to build a life that actually feels good. Ask yourself: When was the last time I laughed hard? When was the last time I felt connected to somebody? When was the last time I did something just because I enjoyed it, not because it improved my r\u00e9sum\u00e9? Your brain doesn't measure your life by what it looks like on Instagram. It responds to connection, purpose, movement, meaningful experiences, rest, and the way you talk to yourself. So don't automatically assume that feeling bad means you're ungrateful. It may mean something important inside you needs attention. Success can fill a r\u00e9sum\u00e9. It doesn't necessarily fill a person.",
+  tTry:"For one week, schedule one activity each day that gives you genuine connection, movement, fun, or peace, without measuring its productivity."},
  {q:"Why does money stress control my whole life?",v:"aligned",
   n:"For years I thought the number in my account was the problem. It wasn't. It was that I'd never said the number out loud to another person. Shame does more damage to your week than the balance does.",
-  t:"Financial strain is one of the most reliable predictors of psychological distress in men, and it's uniquely isolating because disclosure feels like admitting failure at the role. The intervention that moves the needle usually isn't budgeting. It's breaking the secrecy."},
+  tPrev:"Because money isn't just money. For many people, money represents safety, freedom, status, control, and the fear of losing all of those things.",
+  t:"That's why financial stress can follow you everywhere. You're at dinner, but you're thinking about the bills. You're with your family, but you're thinking about work. You finally get into bed, and your brain starts running the numbers. The first step is separating a real financial problem from a mind that is constantly rehearsing the problem. If there is a problem, make a plan. Look at the numbers. Decide what you can control. Take one action. But don't spend 24 hours a day emotionally paying a bill that only needs to be paid once. And remember: money is a tool. It can buy comfort and opportunity, but it can't give you peace of mind by itself. Your goal shouldn't be to eliminate every financial worry. Your goal is to stop allowing financial worry to consume the parts of your life that money can't replace.",
+  tTry:"Give your finances a specific 20 to 30 minute 'worry/planning window.' Outside that window, when the thoughts return, write them down and tell yourself, 'I'll deal with this during my scheduled time.'"},
  {q:"Why am I angry all the time?",v:"aligned",
   n:"I spent two years thinking I had a temper. I didn't. I had a list of things I never said out loud, and anger was the only door any of it could get out of. The anger wasn't the problem. It was the receipt.",
-  t:"Anger is usually a secondary emotion. It arrives on top of something else, most often fear, shame, or grief. It's fast and it's loud, so the brain reaches for it first. Which is why anger management alone rarely holds. You can't regulate a feeling you refuse to name."}
+  tPrev:"Anger is often the emotion people see. It isn't always the emotion underneath.",
+  t:"Sometimes anger is frustration. Sometimes it's fear. Sometimes it's disappointment. Sometimes you're exhausted, overwhelmed, hurt, or feeling out of control, and anger is the emotion your brain reaches for because it feels powerful. That doesn't mean your anger is okay to take out on other people. It means you need to get curious about it. Start noticing the moment before the anger. What happened? What did you tell yourself? What were you expecting? Were you hungry, exhausted, overstimulated, or already carrying stress from somewhere else? And here's something important: you don't have to solve anger while you're at a ten out of ten. Step away. Breathe. Move your body. Give your nervous system a chance to come down. Then deal with the issue. The goal isn't to never get angry. Anger is a human emotion. The goal is to become the person who controls the response instead of allowing the response to control you.",
+  tTry:"The next time you feel anger rising, pause before you speak. Take several slow breaths, physically step away if you can, and ask: 'What am I actually feeling underneath this?'"}
 ];
-const chips = document.querySelector('.chips');
+function renderTake(article,text,preview,rest,tryText){
+  while(article.children.length>1) article.removeChild(article.lastChild);
+  const body=document.createElement('p');
+  body.className='take-body';
+  if(preview){
+    body.innerHTML=preview+'<span class="t-rest"> '+rest+'</span>';
+    const btn=document.createElement('button');
+    btn.className='t-toggle'; btn.type='button'; btn.textContent='Read more';
+    btn.onclick=function(){
+      const ex=article.classList.toggle('take-ex');
+      btn.textContent=ex?'Show less':'Read more';
+    };
+    const tryEl=document.createElement('p');
+    tryEl.className='t-try';
+    tryEl.innerHTML='<b>Try this:</b> '+tryText;
+    article.appendChild(body);
+    article.appendChild(btn);
+    article.appendChild(tryEl);
+  } else {
+    body.textContent=text;
+    article.appendChild(body);
+  }
+}
+const chips=document.querySelector('.chips');
 DATA.forEach((d,i)=>{
   const b=document.createElement('button');
   b.className='chip'; b.type='button'; b.setAttribute('role','tab');
-  b.setAttribute('aria-selected', i===0); b.textContent=d.q;
+  b.setAttribute('aria-selected',i===0); b.textContent=d.q;
   b.onclick=()=>show(i); chips.appendChild(b);
 });
 function show(i){
   const d=DATA[i];
-  [...chips.children].forEach((c,j)=>c.setAttribute('aria-selected', j===i));
+  [...chips.children].forEach((c,j)=>c.setAttribute('aria-selected',j===i));
   $('q').textContent='"'+d.q+'"';
-  $('pNick').textContent=d.n; $('pTom').textContent=d.t;
+  [$('tNick'),$('tTom')].forEach(e=>e.classList.remove('take-ex'));
+  renderTake($('tTom'),null,d.tPrev,d.t,d.tTry);
+  renderTake($('tNick'),d.n,null,null,null);
   [$('tNick'),$('tTom')].forEach(e=>{e.classList.remove('anim');void e.offsetWidth;e.classList.add('anim')});
   if(window.innerWidth<=700){
     setTimeout(()=>{
