@@ -299,6 +299,9 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
 .take-ex .t-try{display:block}
 .t-toggle{background:none;border:none;padding:0;margin:12px 0 0;color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.04em;cursor:pointer;display:block;font-family:var(--body-serif);text-decoration:underline;text-underline-offset:3px}
 .t-toggle:hover{color:var(--cream)}
+.t-show-less{display:none}
+.take-ex .t-read-more{display:none}
+.take-ex .t-show-less{display:block}
 
 /* ── founders ── */
 /* ── founders-mini: compact, no separate section break. Small square
@@ -611,13 +614,16 @@ function buildTake(cls,text,preview,rest,tryText){
   body.className='take-body';
   if(preview){
     body.innerHTML=preview+'<span class="t-rest"> '+rest+'</span>';
-    const btn=document.createElement('button');
-    btn.className='t-toggle'; btn.type='button'; btn.textContent='Read more';
-    btn.onclick=function(){const ex=art.classList.toggle('take-ex');btn.textContent=ex?'Show less':'Read more';};
+    const btnMore=document.createElement('button');
+    btnMore.className='t-toggle t-read-more'; btnMore.type='button'; btnMore.textContent='Read more';
+    const btnLess=document.createElement('button');
+    btnLess.className='t-toggle t-show-less'; btnLess.type='button'; btnLess.textContent='Show less';
     const tryEl=document.createElement('p');
     tryEl.className='t-try';
     tryEl.innerHTML='<b>Try this:</b> '+tryText;
-    art.appendChild(body); art.appendChild(btn); art.appendChild(tryEl);
+    function toggle(){art.classList.toggle('take-ex');}
+    btnMore.onclick=toggle; btnLess.onclick=toggle;
+    art.appendChild(body); art.appendChild(btnMore); art.appendChild(tryEl); art.appendChild(btnLess);
   } else {
     body.textContent=text;
     art.appendChild(body);
