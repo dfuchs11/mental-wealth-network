@@ -279,9 +279,10 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
   color:var(--mute);margin-bottom:34px}
 .verdict .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .verdict[data-v="diverge"]{color:var(--gold-lit);border-color:rgba(201,164,78,.42)}
-.takes{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--faint)}
+.takes{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--faint);align-items:start;position:relative}
+.takes::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--faint);pointer-events:none}
 .take{padding:clamp(24px,3.4vw,42px);background:rgba(8,8,10,.6);position:relative}
-.take+.take{border-left:1px solid var(--faint)}
+.take+.take{border-left:0}
 .take::before{content:"";position:absolute;inset:0 0 auto;height:2px}
 .take.nick::before{background:#6E5D93}
 .take.tom::before{background:var(--navy-lit)}
@@ -294,7 +295,7 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
 .take.anim{animation:rise .55s var(--ease) both}
 .take.tom.anim{animation-delay:.14s}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:820px){.takes{grid-template-columns:1fr}.take+.take{border-left:0;border-top:1px solid var(--faint)}}
+@media(max-width:820px){.takes{grid-template-columns:1fr}.takes::after{display:none}.take+.take{border-left:0;border-top:1px solid var(--faint)}}
 .t-rest{display:none}
 .take-ex .t-rest{display:inline}
 .t-try{font-family:var(--body-serif);font-size:14.5px;line-height:1.6;color:var(--mute);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--faint);display:none}
