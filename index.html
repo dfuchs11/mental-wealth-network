@@ -278,12 +278,10 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
 .ac-trigger[aria-expanded="true"] .ac-icon{color:var(--gold)}
 .ac-panel{display:none}
 .ac-panel.open{display:block}
-.takes{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--faint);align-items:start;position:relative}
+.takes{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--gold);align-items:start;position:relative}
 .takes::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--faint);pointer-events:none}
 .take{padding:clamp(20px,3vw,38px);background:rgba(8,8,10,.6);position:relative}
-.take::before{content:"";position:absolute;inset:0 0 auto;height:2px}
-.take.nick::before{background:#6E5D93}
-.take.tom::before{background:var(--navy-lit)}
+.take::before{display:none}
 .who{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
 .who b{font-family:var(--disp);font-size:17px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
 .who span{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
