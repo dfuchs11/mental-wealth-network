@@ -260,45 +260,43 @@ header.nav.stuck{background:rgba(8,8,10,.88);backdrop-filter:blur(16px);border-b
 .dom-body p{font-family:var(--body-serif);margin:0;font-size:15px;line-height:1.65;color:var(--cream)}
 @media(max-width:640px){.doms{grid-template-columns:1fr}}
 
-/* ── two takes engine ── */
+/* ── accordion engine ── */
 .engine{background:rgba(14,16,22,.72);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint)}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 42px;justify-content:center}
-.chip{border:1px solid var(--faint);border-radius:100px;padding:11px 20px;font-size:14px;color:var(--mute);
-  transition:all .25s var(--ease);text-align:left}
-.chip:hover{border-color:rgba(201,164,78,.5);color:var(--cream);transform:translateY(-2px);box-shadow:0 0 0 3px rgba(201,164,78,.08)}
-.chip[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#08080A;font-weight:600}
-@media(max-width:700px){
-  .chips{flex-direction:column;flex-wrap:nowrap;gap:10px;margin:26px 0 36px}
-  .chip{width:100%;white-space:normal;text-align:left}
-  .chip:active{opacity:.7;transform:scale(.98);transition:transform .08s,opacity .08s}
-}
-.question{font-family:var(--disp);font-weight:500;font-size:clamp(19px,2.9vw,32px);text-transform:uppercase;
-  line-height:1.3;margin:0 0 14px;max-width:24ch;color:var(--gold-pale)}
-.verdict{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;padding:6px 14px;border:1px solid var(--faint);border-radius:100px;
-  color:var(--mute);margin-bottom:34px}
-.verdict .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.verdict[data-v="diverge"]{color:var(--gold-lit);border-color:rgba(201,164,78,.42)}
-.takes{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--faint);align-items:start;position:relative}
+.accordion{margin:36px 0 0;border:1px solid var(--faint)}
+.ac-item{border-bottom:1px solid var(--faint)}
+.ac-item:last-child{border-bottom:0}
+.ac-trigger{width:100%;background:none;border:none;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;text-align:left;transition:background .2s}
+.ac-trigger:hover{background:rgba(201,164,78,.04)}
+.ac-trigger[aria-expanded="true"]{background:rgba(201,164,78,.06)}
+.ac-q{font-family:var(--disp);font-weight:700;font-size:clamp(15px,1.5vw,19px);text-transform:uppercase;letter-spacing:.04em;color:var(--cream);line-height:1.3}
+.ac-trigger[aria-expanded="true"] .ac-q{color:var(--gold-lit)}
+.ac-icon{flex:0 0 auto;width:20px;height:20px;position:relative;color:var(--mute)}
+.ac-icon::before,.ac-icon::after{content:"";position:absolute;background:currentColor;border-radius:1px;transition:transform .25s var(--ease),opacity .25s}
+.ac-icon::before{width:10px;height:1.5px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ac-icon::after{width:1.5px;height:10px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ac-trigger[aria-expanded="true"] .ac-icon::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.ac-trigger[aria-expanded="true"] .ac-icon{color:var(--gold)}
+.ac-panel{display:none}
+.ac-panel.open{display:block}
+.takes{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--faint);align-items:start;position:relative}
 .takes::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--faint);pointer-events:none}
-.take{padding:clamp(24px,3.4vw,42px);background:rgba(8,8,10,.6);position:relative}
-.take+.take{border-left:0}
+.take{padding:clamp(20px,3vw,38px);background:rgba(8,8,10,.6);position:relative}
 .take::before{content:"";position:absolute;inset:0 0 auto;height:2px}
 .take.nick::before{background:#6E5D93}
 .take.tom::before{background:var(--navy-lit)}
-.who{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
-.who b{font-family:var(--disp);font-size:18px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.who{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.who b{font-family:var(--disp);font-size:17px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
 .who span{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
 .take.nick .who span{color:#A796C9}
 .take.tom .who span{color:#8FA6D4}
-.take p,.take .take-body{font-family:var(--body-serif);margin:0;font-size:16px;line-height:1.7;color:var(--cream)}
-.take.anim{animation:rise .55s var(--ease) both}
-.take.tom.anim{animation-delay:.14s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:820px){.takes{grid-template-columns:1fr}.takes::after{display:none}.take+.take{border-left:0;border-top:1px solid var(--faint)}}
+.take p,.take .take-body{font-family:var(--body-serif);margin:0;font-size:15px;line-height:1.7;color:var(--cream)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ac-panel.open .takes{animation:rise .35s var(--ease) both}
+@media(max-width:820px){.takes{grid-template-columns:1fr}.takes::after{display:none}.take+.take{border-top:1px solid var(--faint)}}
+@media(max-width:700px){.ac-trigger{padding:18px 20px}.ac-q{font-size:14px}}
 .t-rest{display:none}
 .take-ex .t-rest{display:inline}
-.t-try{font-family:var(--body-serif);font-size:14.5px;line-height:1.6;color:var(--mute);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--faint);display:none}
+.t-try{font-family:var(--body-serif);font-size:14px;line-height:1.6;color:var(--mute);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--faint);display:none}
 .t-try b{color:var(--gold-lit);font-weight:700;font-style:normal}
 .take-ex .t-try{display:block}
 .t-toggle{background:none;border:none;padding:0;margin:12px 0 0;color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.04em;cursor:pointer;display:block;font-family:var(--body-serif);text-decoration:underline;text-underline-offset:3px}
@@ -508,14 +506,7 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
   <div class="wrap">
     <h2 class="sec rv">One question.<br>Two perspectives.<br>No filter.</h2>
     <p class="lede rv">Two men speaking from experience. No filter, just raw insight.<br>Here are some common questions:</p>
-    <div class="chips rv" role="tablist" aria-label="Choose a question"></div>
-    <div>
-      <p class="question rv" id="q"></p>
-      <div class="takes rv">
-        <article class="take tom" id="tTom"><div class="who"><b>Tom</b></div><p id="pTom"></p></article>
-        <article class="take nick" id="tNick"><div class="who"><b>Nick</b></div><p id="pNick"></p></article>
-      </div>
-    </div>
+    <div class="accordion rv" id="accordion"></div>
   </div>
 </section>
 
@@ -586,76 +577,79 @@ document.querySelectorAll('.dom-head').forEach(d => {
   };
 });
 
-/* ── two takes ── */
+/* ── accordion engine ── */
 const DATA=[
- {q:"Why don't my friends and I ever talk about anything real?",v:"aligned",
+ {q:"Why don't my friends and I ever talk about anything real?",
   n:"Because nobody wants to go first. We're all waiting for the other guy to drop the act, so everyone just talks about nothing. I broke that loop myself. Be the first guy to get real and it's ok to risk looking weak. You don't have to play it safe, nobody can cancel you, and not all 'friends' are worth keeping.",
   tPrev:"Because real conversations require vulnerability, and vulnerability feels risky. A lot of friendships are built around what happened at work, sports, the latest show, social media, or what we're doing this weekend. None of that is bad. But if that's all you talk about, you can be surrounded by people and still feel alone.",
   t:"Here's the uncomfortable truth: somebody has to go first. You don't need to sit your friends down and announce, 'We're going to have a deep conversation.' Just ask a better question. 'How are you really doing?' 'What's been stressing you out lately?' Or tell them something real about yourself first. When you stop performing and start sharing, you give other people permission to do the same. Real connection doesn't come from having more conversations. It comes from having more honest ones.",
   tTry:"The next time you're with a friend, put the phone away and ask one question you normally wouldn't ask. Then actually listen to the answer."},
- {q:"Why do I feel like garbage when everything looks fine on paper?",v:"aligned",
+ {q:"Why do I feel like garbage when everything looks fine on paper?",
   n:"Because 'fine on paper' shouldn't be the goal, it's a disguise. You can check every box and still feel empty inside. The boxes aren't the point. Too many of us are measuring our inside by everyone else's outside, the job, the gym pics, the highlight reel social media posts. Don't be that guy.",
   tPrev:"Because your r\u00e9sum\u00e9 isn't your emotional life. You can have the job, the house, the relationship, the money, the nice car, and still feel empty. That's because external success and internal fulfillment are two completely different things.",
   t:"Sometimes we spend so much energy building a life that looks successful that we forget to build a life that actually feels good. Ask yourself: When was the last time I laughed hard? When was the last time I felt connected to somebody? When was the last time I did something just because I enjoyed it, not because it improved my r\u00e9sum\u00e9? Your brain doesn't measure your life by what it looks like on Instagram. It responds to connection, purpose, movement, meaningful experiences, rest, and the way you talk to yourself. So don't automatically assume that feeling bad means you're ungrateful. It may mean something important inside you needs attention. Success can fill a r\u00e9sum\u00e9. It doesn't necessarily fill a person.",
   tTry:"For one week, schedule one activity each day that gives you genuine connection, movement, fun, or peace, without measuring its productivity."},
- {q:"Why does money stress control my whole life?",v:"aligned",
+ {q:"Why does money stress control my whole life?",
   n:"Because we were taught money equals worth. Your bank account balance isn't your report card for being a man. Don't buy that lie. Mental wealth makes you richer while the numbers just make you anxious.",
   tPrev:"Because money isn't just money. For many people, money represents safety, freedom, status, control, and the fear of losing all of those things. That's why financial stress can follow you everywhere.",
   t:"You're at dinner, but you're thinking about the bills. You're with your family, but you're thinking about work. You finally get into bed, and your brain starts running the numbers. The first step is separating a real financial problem from a mind that is constantly rehearsing the problem. If there is a problem, make a plan. Look at the numbers. Decide what you can control. Take one action. But don't spend 24 hours a day emotionally paying a bill that only needs to be paid once. And remember: money is a tool. It can buy comfort and opportunity, but it can't give you peace of mind by itself. Your goal shouldn't be to eliminate every financial worry. Your goal is to stop allowing financial worry to consume the parts of your life that money can't replace.",
   tTry:"Give your finances a specific 20 to 30 minute 'worry/planning window.' Outside that window, when the thoughts return, write them down and tell yourself, 'I'll deal with this during my scheduled time.'"},
- {q:"Why am I angry all the time?",v:"aligned",
+ {q:"Why am I angry all the time?",
   n:"Because anger is the only emotion men get a free pass to feel. Things like fear, being tired, or feeling unseen all sit under anger's jacket. Most men have spent years being told to be strong, keep moving, and handle it yourself. Something deeper needs your attention. Dig in and do the work.",
   tPrev:"Anger is often the emotion people see. It isn't always the emotion underneath. Sometimes anger is frustration. Sometimes it's fear. Sometimes it's disappointment. Sometimes you're exhausted, overwhelmed, hurt, or feeling out of control, and anger is the emotion your brain reaches for because it feels powerful.",
   t:"That doesn't mean your anger is okay to take out on other people. It means you need to get curious about it. Start noticing the moment before the anger. What happened? What did you tell yourself? What were you expecting? Were you hungry, exhausted, overstimulated, or already carrying stress from somewhere else? And here's something important: you don't have to solve anger while you're at a ten out of ten. Step away. Breathe. Move your body. Give your nervous system a chance to come down. Then deal with the issue. The goal isn't to never get angry. Anger is a human emotion. The goal is to become the person who controls the response instead of allowing the response to control you.",
   tTry:"The next time you feel anger rising, pause before you speak. Take several slow breaths, physically step away if you can, and ask: 'What am I actually feeling underneath this?'"}
 ];
-function renderTake(article,text,preview,rest,tryText){
-  while(article.children.length>1) article.removeChild(article.lastChild);
+function buildTake(cls,text,preview,rest,tryText){
+  const art=document.createElement('article');
+  art.className='take '+cls;
+  const who=document.createElement('div');
+  who.className='who';
+  const name=document.createElement('b');
+  name.textContent=cls==='tom'?'Tom':'Nick';
+  who.appendChild(name);
+  art.appendChild(who);
   const body=document.createElement('p');
   body.className='take-body';
   if(preview){
     body.innerHTML=preview+'<span class="t-rest"> '+rest+'</span>';
     const btn=document.createElement('button');
     btn.className='t-toggle'; btn.type='button'; btn.textContent='Read more';
-    btn.onclick=function(){
-      const ex=article.classList.toggle('take-ex');
-      btn.textContent=ex?'Show less':'Read more';
-    };
+    btn.onclick=function(){const ex=art.classList.toggle('take-ex');btn.textContent=ex?'Show less':'Read more';};
     const tryEl=document.createElement('p');
     tryEl.className='t-try';
     tryEl.innerHTML='<b>Try this:</b> '+tryText;
-    article.appendChild(body);
-    article.appendChild(btn);
-    article.appendChild(tryEl);
+    art.appendChild(body); art.appendChild(btn); art.appendChild(tryEl);
   } else {
     body.textContent=text;
-    article.appendChild(body);
+    art.appendChild(body);
   }
+  return art;
 }
-const chips=document.querySelector('.chips');
+const accordion=$('accordion');
 DATA.forEach((d,i)=>{
-  const b=document.createElement('button');
-  b.className='chip'; b.type='button'; b.setAttribute('role','tab');
-  b.setAttribute('aria-selected',i===0); b.textContent=d.q;
-  b.onclick=()=>show(i); chips.appendChild(b);
+  const item=document.createElement('div');
+  item.className='ac-item';
+  const trigger=document.createElement('button');
+  trigger.className='ac-trigger'; trigger.type='button';
+  trigger.setAttribute('aria-expanded','false');
+  trigger.innerHTML='<span class="ac-q">'+d.q+'</span><span class="ac-icon" aria-hidden="true"></span>';
+  const panel=document.createElement('div');
+  panel.className='ac-panel';
+  const takes=document.createElement('div');
+  takes.className='takes';
+  takes.appendChild(buildTake('tom',null,d.tPrev,d.t,d.tTry));
+  takes.appendChild(buildTake('nick',d.n,null,null,null));
+  panel.appendChild(takes);
+  trigger.onclick=function(){
+    const open=trigger.getAttribute('aria-expanded')==='true';
+    trigger.setAttribute('aria-expanded',open?'false':'true');
+    panel.classList.toggle('open',!open);
+  };
+  item.appendChild(trigger);
+  item.appendChild(panel);
+  accordion.appendChild(item);
 });
-function show(i){
-  const d=DATA[i];
-  [...chips.children].forEach((c,j)=>c.setAttribute('aria-selected',j===i));
-  $('q').textContent='"'+d.q+'"';
-  [$('tNick'),$('tTom')].forEach(e=>e.classList.remove('take-ex'));
-  renderTake($('tTom'),null,d.tPrev,d.t,d.tTry);
-  renderTake($('tNick'),d.n,null,null,null);
-  [$('tNick'),$('tTom')].forEach(e=>{e.classList.remove('anim');void e.offsetWidth;e.classList.add('anim')});
-  if(window.innerWidth<=700){
-    setTimeout(()=>{
-      const el=$('q');
-      const top=el.getBoundingClientRect().top+window.scrollY-90;
-      window.scrollTo({top,behavior:'smooth'});
-    },120);
-  }
-}
-show(0);
 
 /* ── scroll reveal + stat count-up ── */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
