@@ -661,10 +661,27 @@ function countUp(el){
 /* ── nav + form ── */
 const nav=$('nav');
 addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>40),{passive:true});
-$('sub').onclick=()=>{
+$('sub').onclick=async()=>{
   const v=$('email').value.trim();
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){$('fine').textContent="That email doesn't look right. Check it and try again.";$('email').focus();return}
-  $('form').style.display='none'; $('fine').style.display='none'; $('done').style.display='block';
+  const btn=$('sub');
+  btn.disabled=true; btn.textContent='Joining…';
+  try{
+    const res=await fetch('https://embeds.beehiiv.com/pub_5d2f1b2e-5e0e-4225-b5ad-3ee5f90f9644/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'email='+encodeURIComponent(v)
+    });
+    if(res.ok){
+      $('form').style.display='none'; $('fine').style.display='none'; $('done').style.display='block';
+    } else {
+      btn.disabled=false; btn.textContent='Join Us';
+      $('fine').textContent='Something went wrong. Please try again.';
+    }
+  }catch(e){
+    btn.disabled=false; btn.textContent='Join Us';
+    $('fine').textContent='Network error — please check your connection and try again.';
+  }
 };
 $('email').addEventListener('keydown',e=>{if(e.key==='Enter')$('sub').click()});
 </script>
