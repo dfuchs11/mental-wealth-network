@@ -519,7 +519,7 @@ footer{padding:60px 0 46px;border-top:1px solid var(--faint);position:relative;z
         <button class="btn" id="sub">Join Us</button>
       </div>
       <p class="fine" id="fine">*You can opt out or unsubscribe at any time.</p>
-      <p style="margin-top:14px;font-size:15px;color:var(--cream)">Questions or interested in connecting? Email us at <a href="mailto:connect@thementalwealthnetwork.com" id="emailMobile" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px">connect@thementalwealthnetwork.com</a><button id="emailDesktop" type="button" style="display:none;background:none;border:none;padding:0;cursor:pointer;color:var(--gold);font:inherit;font-size:15px;text-decoration:underline;text-underline-offset:3px">connect@thementalwealthnetwork.com</button></p>
+      <p style="margin-top:14px;font-size:15px;color:var(--cream)">Questions or interested in connecting? Email us at <a href="mailto:connect@thementalwealthnetwork.com" id="emailMobile" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px">connect@thementalwealthnetwork.com</a><button id="emailDesktop" type="button" style="display:none;background:none;border:none;padding:0;cursor:pointer;color:var(--gold);font:inherit;font-size:15px;text-decoration:underline;text-underline-offset:3px;position:relative;white-space:nowrap;vertical-align:baseline"><span id="emailAddr" style="transition:opacity .15s">connect@thementalwealthnetwork.com</span><span id="emailCopied" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;pointer-events:none">Copied!</span></button></p>
       <div class="done" id="done"><b>You're in.</b><span class="fine">Welcome to the Movement.</span><span class="fine" style="display:block;margin-top:8px">*If you don't see it in your inbox, check your spam or junk folder.</span></div>
     </div>
   </div>
@@ -696,10 +696,10 @@ if(isTouchOnly){
   emailDesktop.addEventListener('click',function(){
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(ADDR).then(()=>{
-        const orig=emailDesktop.textContent;
-        emailDesktop.textContent='Copied!';
+        const addr=$('emailAddr'),cop=$('emailCopied');
+        addr.style.opacity='0'; cop.style.opacity='1';
         emailDesktop.style.textDecoration='none';
-        setTimeout(()=>{emailDesktop.textContent=orig;emailDesktop.style.textDecoration='underline';},1800);
+        setTimeout(()=>{addr.style.opacity='1';cop.style.opacity='0';emailDesktop.style.textDecoration='underline';},1800);
       }).catch(()=>{});
     }
   });
