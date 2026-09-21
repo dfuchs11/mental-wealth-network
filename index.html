@@ -667,10 +667,10 @@ $('sub').onclick=async()=>{
   const btn=$('sub');
   btn.disabled=true; btn.textContent='Joining…';
   try{
-    const res=await fetch('https://embeds.beehiiv.com/pub_5d2f1b2e-5e0e-4225-b5ad-3ee5f90f9644/subscribe',{
+    const res=await fetch('/api/subscribe',{
       method:'POST',
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:'email='+encodeURIComponent(v)
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:v})
     });
     if(res.ok){
       $('form').style.display='none'; $('fine').style.display='none'; $('done').style.display='block';
